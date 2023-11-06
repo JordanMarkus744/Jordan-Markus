@@ -46,6 +46,8 @@
             async function checkWeather(city){
                 const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
                 var data = await response.json();
+                const currentTimeInTicks = new Date().getTime();
+
 
 
                 document.querySelector(".city").innerHTML = data.name;
@@ -55,19 +57,44 @@
 
 
                 if (data.weather[0].main == "Clouds"){
-                    weatherIcon.src = "images/clouds.png";
+                    if (currentTimeInTicks > (data.sys.sunrise * 1000) && currentTimeInTicks < (data.sys.sunset * 1000)){
+                        weatherIcon.src = "images/clouds.png";
+                    }
+                    else{
+                        weatherIcon.src = "images/cloudsNight.png";
+                    }
                 }
                 else if (data.weather[0].main == "Clear"){
-                    weatherIcon.src = "images/clear.png";
+                    if (currentTimeInTicks > (data.sys.sunrise * 1000) && currentTimeInTicks < (data.sys.sunset * 1000)){
+                        weatherIcon.src = "images/clear.png";
+                    }
+                    else{
+                        weatherIcon.src = "images/clearNight.png";
+                    }
                 }
                 else if (data.weather[0].main == "Rain"){
-                    weatherIcon.src = "images/rain.png";
+                    if (currentTimeInTicks > (data.sys.sunrise * 1000) && currentTimeInTicks < (data.sys.sunset * 1000)){
+                        weatherIcon.src = "images/rain.png";
+                    }
+                    else{
+                        weatherIcon.src = "images/rainNight.png";
+                    }
                 }
                 else if (data.weather[0].main == "Drizzle"){
-                    weatherIcon.src = "images/drizzle.png";
+                    if (currentTimeInTicks > (data.sys.sunrise * 1000) && currentTimeInTicks < (data.sys.sunset * 1000)){
+                        weatherIcon.src = "images/drizzle.png";
+                    }
+                    else{
+                        weatherIcon.src = "images/rainNight.png";
+                    }
                 }
                 else if (data.weather[0].main == "Mist"){
-                    weatherIcon.src = "images/mist.png";
+                    if (currentTimeInTicks > (data.sys.sunrise * 1000) && currentTimeInTicks < (data.sys.sunset * 1000)){
+                        weatherIcon.src = "images/mist.png";
+                    }
+                    else{
+                        weatherIcon.src = "images/rainNight.png";
+                    }
                 }
 
                 var temperature = data.main.temp;
