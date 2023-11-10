@@ -1,0 +1,157 @@
+.hero {
+    background-image: url('Images/virus.jpg');
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    padding: 100px 0;
+}
+.hero h2 {
+    font-size: 36px;
+}
+.hero p {
+    font-size: 18px;
+    margin: 20px 0;
+}
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #f5564e;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 50px;
+}
+.btn:hover {
+    background-color: #f23429;
+}
+.featured-beats {
+    padding: 50px 0;
+    text-align: center;
+}
+.beat-card {
+    background-color: #444;
+    padding: 20px;
+    border-radius: 50px;
+    margin: 10px;
+    display: inline-block;
+    width: 300px;
+}
+.beat-card h3 {
+    font-size: 20px;
+}
+.beat-card p {
+    font-size: 16px;
+    margin: 10px 0;
+}
+.musicPlayer{
+    border:2px solid rgb(0, 0, 0);
+    border-radius: 50px;
+    width: center;
+    position: center;
+}
+/* Style for the file input container */
+.file-input-container {
+    position: relative;
+    width: 200px;
+    height: 40px;
+    overflow: hidden;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: inline-block;
+  }
+
+  /* Style for the file input */
+  .file-input {
+    font-size: 16px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 0;
+  }
+
+  .file-input:hover{
+      background-color: black;
+  }
+
+  /* Style for the button */
+  .file-input-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 0 15px;
+    background-color: #3498db;
+    color: #fff;
+    cursor: pointer;
+  }
+  .file-input-container:hover{
+      background-color: black;
+  }
+  /* Style for Webkit (Chrome, Safari) */
+::-webkit-scrollbar {
+width: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+background-color: #ffffff;
+border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+background-color: #423f3f;
+}
+
+/* Style for Firefox */
+* {
+scrollbar-width: thin;
+scrollbar-color: #3498db #f0f0f0;
+}
+
+/* Style for Microsoft Edge and Internet Explorer */
+*::-ms-scrollbar {
+width: 12px;
+}
+
+*::-ms-scrollbar-thumb {
+background-color: #3498db;
+border-radius: 10px;
+}
+
+*::-ms-scrollbar-track {
+background-color: #f0f0f0;
+}
+
+.content {
+height: 200vh; /* Make content scrollable */
+padding: 20px;
+background-color: #f0f0f0;
+color: #333;
+}
+.search-container {
+text-align: center;
+margin-top: 50px;
+}
+
+.search-box {
+padding: 10px;
+width: 300px;
+border: 1px solid #cccccc;
+background-color: rgb(255, 255, 255);
+border-radius: 5px;
+font-size: 16px;
+width: 950px;
+height: 20px;
+}
+.search-box:hover{
+  background-color: aliceblue;
+}
+
+.search-button {
+padding: 10px 15px;
+background-color: #f5564e;
+color: #fff;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+font-size: 16px;
+}

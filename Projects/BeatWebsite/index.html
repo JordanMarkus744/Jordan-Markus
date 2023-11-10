@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>MyBeatHub</title>
+    <link rel="stylesheet" href="template.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    
+    <header>
+        <nav>
+            <div class="container">
+                <a href="index.html"><img src="Images/Pulse.png" alt="Pulse" width="100" height="100"></a>
+                
+                <ul>
+                    <li><button class="button-63"><a href="#">Upload</a></button></li>
+                    <li><button class="button-42"><a href="index.html" target="_blank">Home</a></button></li>
+                    <li><button class="button-42"><a href="Beats.html" target="_blank">Beats</a></button></li>
+                    <li><button class="button-42"><a href="Artists.html" target="_blank">Artists</a></button></li>
+                    <li><button class="button-42"><a href="About.html" target="_blank">About</a></button></li>
+                    <li><button class="button-42"><a href="Contact.html" target="_blank">Contact</a></button></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    
+
+    <section class="hero">
+        <div class="container">
+            <h2>Your Source for High-Quality Beats</h2>
+            <p>Find the perfect beats for your music projects and start creating today.</p>
+            <a href="#" class="btn">Explore Beats</a>
+        </div>
+        <div class="search-container">
+            <input type="text" class="search-box" placeholder="Search...">
+            <button class="btn">Search</button>
+          </div>
+    </section>
+
+    <section class="featured-beats">
+        <div class="container">
+            <h2>Featured Beats</h2>
+            <div class="beat-card">
+                <img src="beat1.jpg" alt="Beat 1" class="image1">
+                <h3 class="title1">Beat Title 1</h3>
+                <p class="producer1">Producer: Producer Name</p>
+                <audio id="musicPlayer1" controls src="" class="musicPlayer"></audio>
+                <br>
+                <a href="#" class="btn">Buy Now</a>
+            </div>
+            <div class="beat-card">
+                <img src="beat2.jpg" alt="Beat 2" class="image2">
+                <h3 class="title2">Beat Title 2</h3>
+                <p class="producer2">Producer: Producer Name</p>
+                <audio id="musicPlayer2" controls src="" class="musicPlayer"></audio>
+                <br>
+                <a href="#" class="btn">Buy Now</a>
+            </div>
+            <div class="beat-card">
+                <img src="beat3.jpg" alt="Beat 3" class="image3">
+                <h3 class="title3">Beat Title 3</h3>
+                <p class="producer3">Producer: Producer Name</p>
+                <audio id="musicPlayer3" controls src="" class="musicPlayer"></audio>
+                <br>
+                <a href="#" class="btn">Buy Now</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 MyBeatHub</p>
+        </div>
+    </footer>
+
+    <script>
+      // Function to handle music upload
+function uploadMusic() {
+    const musicFile = document.getElementById("musicFile").files[0];
+    if (musicFile) {
+        const musicPlayer = document.getElementById("musicPlayer");
+        document.querySelector(".title1").innerHTML = musicFile.name;
+
+        // Clear the current source (if any)
+        musicPlayer.src = "";
+
+        // Create a URL for the uploaded music and set it as the audio source
+        const objectURL = URL.createObjectURL(musicFile);
+        musicPlayer.src = objectURL;
+
+        // Autoplay the music (optional)
+        musicPlayer.autoplay = true;
+    }
+}
+
+function UpdateFeatured(){
+    const SongBank = [];
+    SongBank[0] = createSongDictionary("MoneyBuyDrugs", "FeaturedSongs/MoneyBuyDrugs.mp3", "Cal Scruby", "Images/Pulse.png");
+    SongBank[1] = createSongDictionary("MoneyBuyDrugs", "FeaturedSongs/MoneyBuyDrugs.mp3", "Cal Scruby", "Images/Pulse.png");
+    SongBank[2] = createSongDictionary("MoneyBuyDrugs", "FeaturedSongs/MoneyBuyDrugs.mp3", "Cal Scruby", "Images/Pulse.png");
+    const musicPlayer1 = document.getElementById("musicPlayer1");
+    const musicPlayer2 = document.getElementById("musicPlayer2");
+    const musicPlayer3 = document.getElementById("musicPlayer3");
+    musicPlayer1.src = SongBank[0].src;
+    musicPlayer2.src = SongBank[1].src;
+    musicPlayer3.src = SongBank[2].src;
+    document.querySelector(".title1").innerHTML = SongBank[0].name;
+    document.querySelector(".producer1").innerHTML = SongBank[0].producer;
+    document.querySelector(".image1").src = SongBank[0].image;
+    document.querySelector(".title2").innerHTML = SongBank[1].name;
+    document.querySelector(".producer2").innerHTML = SongBank[1].producer;
+    document.querySelector(".image2").src = SongBank[1].image;
+    document.querySelector(".title3").innerHTML = SongBank[2].name;
+    document.querySelector(".producer3").innerHTML = SongBank[2].producer;
+    document.querySelector(".image3").src = SongBank[2].image;
+}
+
+function createSongDictionary(songName,src1,prod,imageName){
+    return {name : songName, src : src1, producer : prod, image: imageName};
+}
+
+UpdateFeatured();
+    </script>
+    
+</body>
+</html>

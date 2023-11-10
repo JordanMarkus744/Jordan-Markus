@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fancy Scrollbar</title>
+  <style>
+    /* Style for Webkit (Chrome, Safari) */
+    ::-webkit-scrollbar {
+      width: 12px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: #f804ec;
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background-color: #000000;
+    }
+
+    /* Style for Firefox */
+    * {
+      scrollbar-width: thin;
+      scrollbar-color: #3498db #f0f0f0;
+    }
+
+    /* Style for Microsoft Edge and Internet Explorer */
+    *::-ms-scrollbar {
+      width: 12px;
+    }
+
+    *::-ms-scrollbar-thumb {
+      background-color: #3498db;
+      border-radius: 10px;
+    }
+
+    *::-ms-scrollbar-track {
+      background-color: #f0f0f0;
+    }
+
+    /* Content styling for demonstration */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .content {
+      height: 200vh; /* Make content scrollable */
+      padding: 20px;
+      background-color: #f0f0f0;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="content">
+    <!-- Your scrollable content goes here -->
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. ...</p>
+  </div>
+
+</body>
+</html>
+
+
+<!-- Input for uploading music -->
+<div class="file-input-container">
+    <input type="file" class="file-input" id="musicFile" name="myFile" accept=".mp3">
+    <label for="myFile" class="file-input-label">Choose File</label>
+</div>
+<button onclick="uploadMusic()" class="btn">Upload</button>

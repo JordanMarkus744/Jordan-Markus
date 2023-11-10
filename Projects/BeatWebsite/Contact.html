@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nice-looking File Input</title>
+  <style>
+    /* Style for the file input container */
+    .file-input-container {
+      position: relative;
+      width: 200px;
+      height: 40px;
+      overflow: hidden;
+      background-color: #f0f0f0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      display: inline-block;
+    }
+
+    /* Style for the file input */
+    .file-input {
+      font-size: 16px;
+      position: absolute;
+      top: 0;
+      right: 0;
+      opacity: 0;
+    }
+
+    /* Style for the button */
+    .file-input-label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      padding: 0 15px;
+      background-color: #3498db;
+      color: #fff;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="file-input-container">
+    <input type="file" class="file-input" id="myFile" name="myFile">
+    <label for="myFile" class="file-input-label">Choose File</label>
+  </div>
+
+</body>
+</html>
