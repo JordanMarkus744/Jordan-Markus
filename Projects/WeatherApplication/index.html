@@ -36,7 +36,7 @@
         </div>
         <script>
 
-            const apiKey = "e6316753070f8e0e73b04a7b553bd511";
+            const apiKey = "apikey"; // put api key
             const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=imperial&q=";
             const searchBox = document.querySelector(".search input");
             const searchBtn = document.querySelector(".search button");
@@ -98,17 +98,18 @@
                 }
 
                 var temperature = data.main.temp;
+                var temp;
 
                 if (temperature >= 80){
-                    var temp = "hot";
+                    temp = "hot";
                     document.getElementById("theme").href = temp + "styles.css";
                 }
                 else if (temperature >= 40){
-                    var temp = "fair";
+                    temp = "fair";
                     document.getElementById("theme").href = temp + "styles.css";
                 }
                 else{
-                    var temp = "cold";
+                    temp = "cold";
                     document.getElementById("theme").href = temp + "styles.css";
                 }
 

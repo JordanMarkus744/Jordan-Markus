@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>New Movie / Show Emailer</title>
+</head>
+<body>
+    <header>
+        <h1 class="title">New Movie / Show Emailer</h1>
+        <p>Fill out the form and submit to get emails about new movies and shows on different streaming platforms</p>
+    </header>
+    <div class="form-container" id="form">
+        <form action="#" id="myForm">
+            <div class="divider">
+                <label for="email">Email:</label>
+                <input type="email" name="email" id="email">
+            </div>
+            <fieldset>
+                <legend>Streaming Platforms:</legend>
+                <input type="checkbox" name="CBNetflix" id="CBNetflix" class="CB" value="netflix">
+                <label for="CBNetflix">Netflix</label><br>
+        
+                <input type="checkbox" name="CBHulu" id="CBHulu" class="CB" value="prime.subscription">
+                <label for="CBHulu">Hulu + HBO Max Addon</label><br>
+        
+                <input type="checkbox" name="CBHBO" id="CBHBO" class="CB" value="hbo%2Chulu.addon.hbo%2Cprime.addon.hbomaxus">
+                <label for="CBHBO">HBO Max and HBO Max Addons</label><br>
+        
+                <input type="checkbox" name="CBApple" id="CBApple" class="CB" value="apple.addon">
+                <label for="CBApple">Apple TV Channels</label><br>
+        
+                <input type="checkbox" name="CBPeacock" id="CBPeacock" class="CB" value="peacock.free">
+                <label for="CBPeacock">Free Peacock Shows</label><br>
+            </fieldset>
+
+            <fieldset>
+                <legend>Country:</legend>
+                <input type="radio" id="US" name="options" value="us" class="country">
+                <label for="US">United States</label>
+                <input type="radio" id="UK" name="options" value="gb" class="country">
+                <label for="UK">United Kingdom</label>
+            </fieldset>
+            <fieldset>
+                <legend>Optional:</legend>
+                <fieldset class="OrderRadio">
+                    <legend>Keywords:</legend>
+                    <textarea name="Keywords" id="Keywords" cols="30" rows="10" style="resize: none;"></textarea>
+                </fieldset>
+
+                
+                <fieldset class="OrderRadio" id="radio-form">
+                    <legend>Order By:</legend>
+                    <input type="radio" name="order" id="original_title" class="order">
+                    <label for="original_title">Original title</label>
+
+                    <input type="radio" name="order" id="popularity_alltime" class="order">
+                    <label for="popularity_alltime">Pop Alltime</label>
+                    
+                    <input type="radio" name="order" id="popularity_1year" class="order">
+                    <label for="popularity_1year">Pop 1 year</label>
+                    
+                    <input type="radio" name="order" id="popularity_1month" class="order">
+                    <label for="popularity_1month">Pop 1 month</label>
+
+                    <input type="radio" name="order" id="popularity_1week" class="order">
+                    <label for="popularity_1week">Pop 1 week</label>
+
+                    <input type="radio" name="year" id="year" class="order">
+                    <label for="year">Year</label>
+                </fieldset>
+            </fieldset>
+
+            <button type="submit">Submit</button>
+            <input type="reset" value="reset">
+        </form>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>

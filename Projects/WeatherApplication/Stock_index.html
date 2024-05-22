@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stockStyles.css">
+    <title>Stock Portfolio Lookup</title>
+</head>
+<body>
+
+    <h1 id="header1">
+
+    </h1>
+
+    
+    <div class="search">
+        <h2>Lookup anyone</h2>
+        <input type="text" placeholder="Enter a name, company" id="searchBar">
+    </div>
+    
+    <table id="filings-table">
+        <thead>
+          <tr>
+            <th>Form Type</th>
+            <th>Form Description</th>
+            <th>Filing Date</th>
+            <th>Reporting Date</th>
+          </tr>
+        </thead>
+        <tbody id="filings-body">
+        </tbody>
+    </table>
+
+    <script>
+        const apiUrl = "https://data.sec.gov/submissions/CIK"
+        const CIK = "0001318605"
+
+        async function Lookup(CIK){
+
+            const response = await fetch(apiUrl + CIK + ".json");
+            var data = await response.json();
+            var size = data.filings.recent.acceptanceDateTime.length;
+
+            console.log(data);
+
+            const tableBody = document.getElementById("filings-body");
+            const dataFilings = data.filings.recent;
+            const header = document.getElementById("header1");
+            const name = data.name;
+            header.append(`SEC Filings for ${name}`);
+
+            for (let i = 0; i < size; i++){
+
+                let formType = dataFilings.form[i];
+                let formDescription = dataFilings.primaryDocDescription[i];
+                let filingDate = dataFilings.filingDate[i];
+                let reportingDate = dataFilings.reportDate[i];
+
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                <td>${formType}</td>
+                <td>${formDescription}</td>
+                <td>${filingDate}</td>
+                <td>${reportingDate}</td>
+                `;
+                tableBody.appendChild(row);
+
+            }
+        }
+        Lookup(CIK);
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,28 @@
+table{
+    border-collapse: collapse;
+    width: 100%;
+    padding-right: 50px;
+}
+
+tr:nth-child(even){
+    background-color: #f2f2f2
+}
+
+th, td{
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th{
+    background-color: #a5a5a5;
+}
+
+#header1{
+    text-align: center;
+}
+
+.search{
+    text-align: center;
+    padding-bottom: 30px;
+}
