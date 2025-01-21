@@ -4,6 +4,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Weather App</title>
         <link rel="stylesheet" href="styles.css" id="theme">
+        <script src="server.js"></script>
     </head>
     <body>
         
@@ -35,91 +36,64 @@
             </div>
         </div>
         <script>
-
-            const apiKey = "apikey"; // put api key
-            const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=imperial&q=";
             const searchBox = document.querySelector(".search input");
             const searchBtn = document.querySelector(".search button");
             const weatherIcon = document.querySelector(".weather-icon");
-
-
-            async function checkWeather(city){
-                const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
-                var data = await response.json();
-                const currentTimeInTicks = new Date().getTime();
-
-
-
-                document.querySelector(".city").innerHTML = data.name;
-                document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°F";
-                document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
-                document.querySelector(".wind").innerHTML = data.wind.speed + " mph";
-
-
-                if (data.weather[0].main == "Clouds"){
-                    if (currentTimeInTicks > (data.sys.sunrise * 1000) && currentTimeInTicks < (data.sys.sunset * 1000)){
-                        weatherIcon.src = "images/clouds.png";
+        
+            async function checkWeather(city) {
+                try {
+                    // Call your server's API
+                    const response = await fetch(`http://localhost:3000/api/weather?city=${city}`);
+                    if (!response.ok) throw new Error("Failed to fetch weather data.");
+                    const data = await response.json();
+        
+                    const currentTimeInTicks = new Date().getTime();
+        
+                    // Update weather data
+                    document.querySelector(".city").innerHTML = data.name;
+                    document.querySelector(".temp").innerHTML =
+                        Math.round(data.main.temp) + "°F";
+                    document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
+                    document.querySelector(".wind").innerHTML = data.wind.speed + " mph";
+        
+                    // Update weather icon
+                    const isDaytime =
+                        currentTimeInTicks > data.sys.sunrise * 1000 &&
+                        currentTimeInTicks < data.sys.sunset * 1000;
+        
+                    const weatherMain = data.weather[0].main;
+                    if (weatherMain === "Clouds") {
+                        weatherIcon.src = isDaytime ? "images/clouds.png" : "images/cloudsNight.png";
+                    } else if (weatherMain === "Clear") {
+                        weatherIcon.src = isDaytime ? "images/clear.png" : "images/clearNight.png";
+                    } else if (weatherMain === "Rain") {
+                        weatherIcon.src = isDaytime ? "images/rain.png" : "images/rainNight.png";
+                    } else if (weatherMain === "Drizzle") {
+                        weatherIcon.src = isDaytime ? "images/drizzle.png" : "images/rainNight.png";
+                    } else if (weatherMain === "Mist") {
+                        weatherIcon.src = isDaytime ? "images/mist.png" : "images/rainNight.png";
                     }
-                    else{
-                        weatherIcon.src = "images/cloudsNight.png";
+        
+                    // Update theme based on temperature
+                    const temperature = data.main.temp;
+                    let tempTheme;
+                    if (temperature >= 80) {
+                        tempTheme = "hot";
+                    } else if (temperature >= 40) {
+                        tempTheme = "fair";
+                    } else {
+                        tempTheme = "cold";
                     }
+                    document.getElementById("theme").href = `${tempTheme}styles.css`;
+                } catch (error) {
+                    alert("Error fetching weather data: " + error.message);
                 }
-                else if (data.weather[0].main == "Clear"){
-                    if (currentTimeInTicks > (data.sys.sunrise * 1000) && currentTimeInTicks < (data.sys.sunset * 1000)){
-                        weatherIcon.src = "images/clear.png";
-                    }
-                    else{
-                        weatherIcon.src = "images/clearNight.png";
-                    }
-                }
-                else if (data.weather[0].main == "Rain"){
-                    if (currentTimeInTicks > (data.sys.sunrise * 1000) && currentTimeInTicks < (data.sys.sunset * 1000)){
-                        weatherIcon.src = "images/rain.png";
-                    }
-                    else{
-                        weatherIcon.src = "images/rainNight.png";
-                    }
-                }
-                else if (data.weather[0].main == "Drizzle"){
-                    if (currentTimeInTicks > (data.sys.sunrise * 1000) && currentTimeInTicks < (data.sys.sunset * 1000)){
-                        weatherIcon.src = "images/drizzle.png";
-                    }
-                    else{
-                        weatherIcon.src = "images/rainNight.png";
-                    }
-                }
-                else if (data.weather[0].main == "Mist"){
-                    if (currentTimeInTicks > (data.sys.sunrise * 1000) && currentTimeInTicks < (data.sys.sunset * 1000)){
-                        weatherIcon.src = "images/mist.png";
-                    }
-                    else{
-                        weatherIcon.src = "images/rainNight.png";
-                    }
-                }
-
-                var temperature = data.main.temp;
-                var temp;
-
-                if (temperature >= 80){
-                    temp = "hot";
-                    document.getElementById("theme").href = temp + "styles.css";
-                }
-                else if (temperature >= 40){
-                    temp = "fair";
-                    document.getElementById("theme").href = temp + "styles.css";
-                }
-                else{
-                    temp = "cold";
-                    document.getElementById("theme").href = temp + "styles.css";
-                }
-
             }
-
-            searchBtn.addEventListener("click", ()=>{
-                checkWeather(searchBox.value);
-            })
-
-
+        
+            searchBtn.addEventListener("click", () => {
+                const city = searchBox.value.trim();
+                if (city) checkWeather(city);
+            });
         </script>
     </body>
 </html>
